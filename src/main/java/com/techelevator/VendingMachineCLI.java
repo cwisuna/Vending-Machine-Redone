@@ -32,7 +32,8 @@ public class VendingMachineCLI {
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				// display vending machine items
-				System.out.println(purchase.listItemsFromMap().toString());
+				System.out.println();
+				purchase.listItemsFromMap();
 
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase

@@ -5,12 +5,12 @@ import com.techelevator.Items.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Purchase {
-    private Map<String, Item> items = new HashMap<>();
+    private Map<String, Item> items = new LinkedHashMap<>();
     private BigDecimal moneyFed;
     private BigDecimal totalMoney;
 
@@ -25,13 +25,13 @@ public class Purchase {
                     String[] itemArray = line.split("\\|");
 
                     if(itemArray[3].equals("Chip")){
-                        items.put(itemArray[0].toLowerCase(), new Chips(itemArray[0], itemArray[1], new BigDecimal(itemArray[2]), itemArray[3],5));
+                        items.put(itemArray[0], new Chips(itemArray[0], itemArray[1], new BigDecimal(itemArray[2]), itemArray[3],5));
                     }else if(itemArray[3].equals("Candy")){
-                        items.put(itemArray[0].toLowerCase(), new Candy(itemArray[0], itemArray[1], new BigDecimal(itemArray[2]), itemArray[3],5));
+                        items.put(itemArray[0], new Candy(itemArray[0], itemArray[1], new BigDecimal(itemArray[2]), itemArray[3],5));
                     }else if(itemArray[3].equals("Drink")){
-                        items.put(itemArray[0].toLowerCase(), new Drink(itemArray[0], itemArray[1], new BigDecimal(itemArray[2]), itemArray[3],5));
+                        items.put(itemArray[0], new Drink(itemArray[0], itemArray[1], new BigDecimal(itemArray[2]), itemArray[3],5));
                     }else if(itemArray[3].equals("Gum")){
-                        items.put(itemArray[0].toLowerCase(), new Gum(itemArray[0], itemArray[1], new BigDecimal(itemArray[2]), itemArray[3],5));
+                        items.put(itemArray[0], new Gum(itemArray[0], itemArray[1], new BigDecimal(itemArray[2]), itemArray[3],5));
                     }else{
                         System.out.println(itemArray[0] + " Type not found.");
                     }
@@ -40,7 +40,7 @@ public class Purchase {
                 System.err.println(e.getMessage());
             }
         }else{
-            System.out.println("Soemthing went wrong with the file");
+            System.out.println("Something went wrong with the file");
         }
         if(!items.isEmpty()){
             return true;
@@ -48,13 +48,11 @@ public class Purchase {
         return false;
     }
 
-    public String listItemsFromMap(){
-        String returnString = "";
-
+    public void listItemsFromMap(){
         for(Map.Entry<String, Item> item : items.entrySet()){
-            returnString +=  item.getValue().toString().trim() + "\n";
+            System.out.println(item.getKey() + ":" +  item.getValue().toString());
         }
-        return returnString;
+
 
     }
 
