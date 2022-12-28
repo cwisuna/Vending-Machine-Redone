@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Purchase {
-    private Map<String, Item> items = new LinkedHashMap<>();
+    private Map<String, Item> itemsMap = new LinkedHashMap<>();
     private BigDecimal moneyFed;
     private BigDecimal totalMoney;
 
@@ -25,13 +25,13 @@ public class Purchase {
                     String[] itemArray = line.split("\\|");
 
                     if(itemArray[3].equals("Chip")){
-                        items.put(itemArray[0], new Chips(itemArray[0], itemArray[1], new BigDecimal(itemArray[2]), itemArray[3],5));
+                        itemsMap.put(itemArray[0], new Chips(itemArray[0], itemArray[1], new BigDecimal(itemArray[2]), itemArray[3],5));
                     }else if(itemArray[3].equals("Candy")){
-                        items.put(itemArray[0], new Candy(itemArray[0], itemArray[1], new BigDecimal(itemArray[2]), itemArray[3],5));
+                        itemsMap.put(itemArray[0], new Candy(itemArray[0], itemArray[1], new BigDecimal(itemArray[2]), itemArray[3],5));
                     }else if(itemArray[3].equals("Drink")){
-                        items.put(itemArray[0], new Drink(itemArray[0], itemArray[1], new BigDecimal(itemArray[2]), itemArray[3],5));
+                        itemsMap.put(itemArray[0], new Drink(itemArray[0], itemArray[1], new BigDecimal(itemArray[2]), itemArray[3],5));
                     }else if(itemArray[3].equals("Gum")){
-                        items.put(itemArray[0], new Gum(itemArray[0], itemArray[1], new BigDecimal(itemArray[2]), itemArray[3],5));
+                        itemsMap.put(itemArray[0], new Gum(itemArray[0], itemArray[1], new BigDecimal(itemArray[2]), itemArray[3],5));
                     }else{
                         System.out.println(itemArray[0] + " Type not found.");
                     }
@@ -42,15 +42,15 @@ public class Purchase {
         }else{
             System.out.println("Something went wrong with the file");
         }
-        if(!items.isEmpty()){
+        if(!itemsMap.isEmpty()){
             return true;
         }
         return false;
     }
 
     public void listItemsFromMap(){
-        for(Map.Entry<String, Item> item : items.entrySet()){
-            System.out.println(item.getKey() + ":" +  item.getValue().toString());
+        for(Map.Entry<String, Item> item : itemsMap.entrySet()){
+            System.out.println(item.getValue().getItemSlot() +  " || " + item.getValue().getName() + " || " +  "$" + item.getValue().getPrice() + " || " + item.getValue().getQuantity() + " remaining");
         }
 
 
