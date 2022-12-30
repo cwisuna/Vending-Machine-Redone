@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import com.techelevator.Items.*;
+import com.techelevator.view.Menu;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +14,36 @@ public class Purchase {
     private Map<String, Item> itemsMap = new LinkedHashMap<>();
     private BigDecimal moneyFed;
     private BigDecimal totalMoney;
+    private final String PURCHASE_FEED_MONEY = "Feed Money";
+    private final String PURCHASE_SELECT_PRODUCT = "Select Product";
+    private final String PURCHASE_FINISH_TRANSACTION = "Finish Transaction";
+    private final String[] PURCHASE_MENU_OPTIONS = { PURCHASE_FEED_MONEY, PURCHASE_SELECT_PRODUCT, PURCHASE_FINISH_TRANSACTION };
+
+
+
+    public Map<String, Item> getItemsMap() {
+        return itemsMap;
+    }
+
+    public void setItemsMap(Map<String, Item> itemsMap) {
+        this.itemsMap = itemsMap;
+    }
+
+    public BigDecimal getMoneyFed() {
+        return moneyFed;
+    }
+
+    public void setMoneyFed(BigDecimal moneyFed) {
+        this.moneyFed = moneyFed;
+    }
+
+    public BigDecimal getTotalMoney() {
+        return totalMoney;
+    }
+
+    public void setTotalMoney(BigDecimal totalMoney) {
+        this.totalMoney = totalMoney;
+    }
 
     public boolean createMap(File file) throws FileNotFoundException {
 
@@ -48,14 +79,34 @@ public class Purchase {
         return false;
     }
 
-    public void listItemsFromMap(){
+    public void displayVendingItems(){
         for(Map.Entry<String, Item> item : itemsMap.entrySet()){
             System.out.println(item.getValue().getItemSlot() +  " || " + item.getValue().getName() + " || " +  "$" + item.getValue().getPrice() + " || " + item.getValue().getQuantity() + " remaining");
         }
-
-
     }
 
 
+    public void displayPurchaseMenu(){
+
+        Menu purchaseMenu = new Menu(System.in, System.out);
+
+        while (true) {
+            String choice = (String) purchaseMenu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
+
+            if (choice.equals(PURCHASE_FEED_MONEY)) {
+                // feed money
+                System.out.println("Feed me");
+
+            } else if (choice.equals(PURCHASE_SELECT_PRODUCT)) {
+                // select product
+                System.out.println("pick something");
+
+            }else if(choice.equals(PURCHASE_FINISH_TRANSACTION)){
+                // finish transaction
+
+            }
+        }
+
+    }
 
 }
