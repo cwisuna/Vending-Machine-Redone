@@ -11,4 +11,5 @@ public class Candy extends Item{
     public String getMessage(){
         return "Munch Munch, Yum!";
     }
+
 }

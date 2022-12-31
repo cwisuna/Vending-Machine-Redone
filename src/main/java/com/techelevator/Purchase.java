@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Purchase {
     private Map<String, Item> itemsMap = new LinkedHashMap<>();
     private BigDecimal moneyFed;
-    private BigDecimal totalMoney;
+    private BigDecimal customerBalance;
     private final String PURCHASE_FEED_MONEY = "Feed Money";
     private final String PURCHASE_SELECT_PRODUCT = "Select Product";
     private final String PURCHASE_FINISH_TRANSACTION = "Finish Transaction";
@@ -37,14 +37,18 @@ public class Purchase {
         this.moneyFed = moneyFed;
     }
 
-    public BigDecimal getTotalMoney() {
-        return totalMoney;
+    public BigDecimal getCustomerBalance() {
+        return customerBalance;
     }
 
-    public void setTotalMoney(BigDecimal totalMoney) {
-        this.totalMoney = totalMoney;
+    public void setCustomerBalance(BigDecimal customerBalance) {
+        this.customerBalance = customerBalance;
     }
 
+    public Purchase(){
+        this.moneyFed = new BigDecimal(0.00);
+        this.customerBalance = new BigDecimal(0.00);
+    }
     public boolean createMap(File file) throws FileNotFoundException {
 
         if(file.exists()){
@@ -85,7 +89,6 @@ public class Purchase {
         }
     }
 
-
     public void displayPurchaseMenu(){
 
         Menu purchaseMenu = new Menu(System.in, System.out);
@@ -95,11 +98,17 @@ public class Purchase {
 
             if (choice.equals(PURCHASE_FEED_MONEY)) {
                 // feed money
-                System.out.println("Feed me");
+                Scanner moneyInput = new Scanner(System.in);
+                moneyFed = moneyInput.nextBigDecimal();
+                System.out.println();
+                System.out.println("Current Money Provided: " + "$" + moneyFed);
+
+
+
 
             } else if (choice.equals(PURCHASE_SELECT_PRODUCT)) {
                 // select product
-                System.out.println("pick something");
+
 
             }else if(choice.equals(PURCHASE_FINISH_TRANSACTION)){
                 // finish transaction
@@ -108,5 +117,6 @@ public class Purchase {
         }
 
     }
+
 
 }

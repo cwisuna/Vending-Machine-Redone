@@ -63,5 +63,9 @@ public class Item {
     public String getMessage(){
         return "";
     };
+    public void removeItem(){
+        this.quantity -= 1;
+    }
+
 
 }
