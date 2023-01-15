@@ -51,6 +51,7 @@ public class VendingMachineCLI {
 				System.out.println();
 				System.out.println("Goodbye!");
 				isRunning = false;
+				System.exit(1);
 			}
 		}
 

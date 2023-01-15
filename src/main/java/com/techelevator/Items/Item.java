@@ -10,6 +10,10 @@ public class Item {
     private String type;
     private int quantity;
 
+    public Item() {
+
+    }
+
     //getters & setters
     public String getItemSlot() {
         return itemSlot;

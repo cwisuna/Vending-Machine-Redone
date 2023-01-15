@@ -74,6 +74,7 @@ public class Purchase {
             }catch(FileNotFoundException e){
                 System.err.println(e.getMessage());
             }
+
         }else{
             System.out.println("Something went wrong with the file");
         }
@@ -92,8 +93,8 @@ public class Purchase {
     public void displayPurchaseMenu(){
 
         Menu purchaseMenu = new Menu(System.in, System.out);
-
-        while (true) {
+        boolean isRunning = true;
+        while (isRunning) {
             String choice = (String) purchaseMenu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 
             if (choice.equals(PURCHASE_FEED_MONEY)) {
@@ -103,16 +104,14 @@ public class Purchase {
                 System.out.println();
                 System.out.println("Current Money Provided: " + "$" + moneyFed);
 
-
-
-
             } else if (choice.equals(PURCHASE_SELECT_PRODUCT)) {
                 // select product
 
-
             }else if(choice.equals(PURCHASE_FINISH_TRANSACTION)){
                 // finish transaction
-
+                System.out.println();
+                System.out.println("Goodbye!");
+                isRunning = false;
             }
         }
 
